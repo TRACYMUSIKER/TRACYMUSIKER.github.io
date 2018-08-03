@@ -60,6 +60,23 @@
     list-style:none;
     margin: 1rem;
   }
+
+  .dropdown{
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    width: 80%;
+    border: none;
+    font-family: sans-serif;
+    margin-top: 13px;
+    margin-bottom: 1rem;
+    padding: 1em;
+
+  }
+  .dropdownHidden {
+    display: none;
+  }
+
    .button {
     background: var(--green);
     padding: 0.5rem 0.5rem;
@@ -68,3 +85,6 @@
     width:8rem;
     height: 2rem;
   }
+
+ 
+  
