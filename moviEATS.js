@@ -1,5 +1,4 @@
-var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query='
-var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query='
+var recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query='
 var form = document.querySelector(".form");
 var moviesArray = [];
 var foodArray = ['hotdog','taco','pizza','icecream'];
@@ -42,7 +41,7 @@ var getMovieData = function(input, output, cardList) {
     };
 
 
-$.ajax(url + "pasta", {
+$.ajax(recipeUrl + "pasta", {
     headers: {
         "X-Mashape-Key": recipeKey,
         "Accept": "application/json" ,
@@ -68,3 +67,13 @@ $.ajax(url + "pasta", {
   })
 }
  getMoviesAPI();
+
+
+var dropDownShow = document.querySelector('.dropdown')
+var viewRecipeButton = document.querySelector('.viewRecipeButton')
+viewRecipeButton.addEventListener("click", function(x){
+  x.preventDefault();
+  dropDownShow.classList.remove('dropdownHidden');
+
+})
+
