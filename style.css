@@ -1,0 +1,70 @@
+:root {
+    --primary: #ddd;
+    --dark: #333;
+    --light: #fff;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+    --green: green;
+  }
+   html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+   .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+   .main-input {
+    height: 2rem;
+    width: 280px;
+    box-shadow: var(--shadow);
+    border: none;
+  }
+   .output {
+    display: none;    
+    
+  }
+
+  .show{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 1em;
+  }
+   .card-list {
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    width: 50%;
+    height: 10rem;
+    border: none;
+    margin-bottom: 1rem;
+    padding: 1em;
+  }
+   .list-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    padding: 1rem;
+    width: 80%;
+    height: 10rem;
+    list-style:none;
+    margin: 1rem;
+  }
+   .button {
+    background: var(--green);
+    padding: 0.5rem 0.5rem;
+    color: var(--light);
+    box-shadow: var(--shadow);
+    width:8rem;
+    height: 2rem;
+  }
