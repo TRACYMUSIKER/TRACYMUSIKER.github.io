@@ -1,3 +1,4 @@
+
 var recipeApiUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query='
 var form = document.querySelector(".form")
 
@@ -11,7 +12,8 @@ var foodObject =
   "Comedy, Drama": ["creamy", "ravioli"]
 };
 
-var dropdown = document.querySelector('.dropdown');
+var dropDownShow = document.querySelector('.dropdown');
+
 var moviesArray = [];
  form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -49,8 +51,6 @@ var getMovieData = function(input, output, cardList) {
       });
     };
     // ${foodArray.genre}
-
-
 
 var randomArrayItem = function(recipeOptions) {
   return recipeOptions[Math.floor(Math.random()*recipeOptions.length)];
@@ -99,6 +99,14 @@ var createRecipe = function(recipe) {
   recipeTitleDisplay.textContent = recipe.name;
   recipeLink.setAttribute('href', recipe.link);
   recipeLink.appendChild(recipeTitleDisplay);
-  dropdown.appendChild(recipeImage);
-  dropdown.appendChild(recipeLink);
+  dropDownShow.appendChild(recipeImage);
+  dropDownShow.appendChild(recipeLink);
 }
+)
+var viewRecipeButton = document.querySelector('.viewRecipeButton')
+viewRecipeButton.addEventListener("click", function(x){
+  x.preventDefault();
+  dropDownShow.classList.remove('dropdownHidden');
+
+})
+
