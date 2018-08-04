@@ -1,8 +1,18 @@
-var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query='
-var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query='
-var form = document.querySelector(".form");
+var recipeApiUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query='
+var form = document.querySelector(".form")
+
+var foodObject = 
+  {
+  Comedy: ["pasta", "chicken"],
+  "Horror, Sci-Fi": ["taco", "asian"],
+  Drama: ["rice", "potato"],
+  Adventure: ["spicy", "beef"],
+  "Sci-fi": ["spinach", "fish"],
+  "Comedy, Drama": ["creamy", "ravioli"]
+};
+
+var dropdown = document.querySelector('.dropdown');
 var moviesArray = [];
-var foodArray = ['hotdog','taco','pizza','icecream'];
  form.addEventListener("submit", function(e) {
   e.preventDefault();
   displayContent();
@@ -16,12 +26,10 @@ var foodArray = ['hotdog','taco','pizza','icecream'];
 };
 var getMovieData = function(input, output, cardList) {
     var input = input;
-    console.log(input);
     var output = output;
-    console.log(output)
     var card = cardList;
-    console.log(cardList);
-    $.ajax({
+
+      $.ajax({
         type: "GET",
         url: `http://www.omdbapi.com/?apikey=24ec2260&t=${input.value}`,
         success: function(data) {
@@ -40,19 +48,30 @@ var getMovieData = function(input, output, cardList) {
         }
       });
     };
+    // ${foodArray.genre}
 
 
-$.ajax(url + "pasta", {
+
+var randomArrayItem = function(recipeOptions) {
+  return recipeOptions[Math.floor(Math.random()*recipeOptions.length)];
+}
+
+
+var getRecipe = function(food) {
+  $.ajax(recipeApiUrl + food, {
     headers: {
         "X-Mashape-Key": recipeKey,
         "Accept": "application/json" ,
     },
     method: "GET", 
-    success: function(data) {
-        console.log(data)
+    success: function(recipes) {
+        var recipeInfo = randomArrayItem(recipes.Recipes);
+        createRecipe(recipeInfo);
     }
-})
- var getMoviesAPI = function() {
+  })
+}
+console.log(getRecipe('tamales'));
+var getMoviesAPI = function() {
   $.ajax({
     type:'GET',
     url:`http://www.omdbapi.com/?apikey=24ec2260&t`,
@@ -68,3 +87,18 @@ $.ajax(url + "pasta", {
   })
 }
  getMoviesAPI();
+
+var createRecipe = function(recipe) {
+  var recipeImage = document.createElement('img');
+  var recipeTitleDisplay = document.createElement('p');
+  var recipeLink = document.createElement('a')
+  recipeImage.classList.add('.recipe-img');
+  recipeTitleDisplay.classList.add('.recipe-title')
+  recipeLink.classList.add('.recipe-link');
+  recipeImage.setAttribute('src', recipe.image);
+  recipeTitleDisplay.textContent = recipe.name;
+  recipeLink.setAttribute('href', recipe.link);
+  recipeLink.appendChild(recipeTitleDisplay);
+  dropdown.appendChild(recipeImage);
+  dropdown.appendChild(recipeLink);
+}
