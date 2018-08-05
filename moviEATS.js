@@ -15,10 +15,9 @@ var form = document.querySelector(".form")
 var dropDownShow = document.querySelector(".dropdown");
 
 form.addEventListener("submit", function(e) {
-e.preventDefault();
-displayContent();
+  e.preventDefault();
+  displayContent();
 });
-
 
 var foodObject = 
   {
