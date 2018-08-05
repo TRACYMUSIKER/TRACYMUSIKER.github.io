@@ -10,12 +10,25 @@ var form = document.querySelector(".form");
 var recipeApiUrl =
   "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
 
+var recipeApiUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query='
+var form = document.querySelector(".form")
 var dropDownShow = document.querySelector(".dropdown");
 
 form.addEventListener("submit", function(e) {
-  e.preventDefault();
-  displayContent();
+e.preventDefault();
+displayContent();
 });
+
+
+var foodObject = 
+  {
+  Comedy: ["pasta", "chicken"],
+  "Horror, Sci-Fi": ["taco", "asian"],
+  Drama: ["rice", "potato"],
+  Adventure: ["spicy", "beef"],
+  "Sci-fi": ["spinach", "fish"],
+  "Comedy, Drama": ["creamy", "ravioli"]
+};
 
 var displayContent = function() {
   var output = document.querySelector(".output");
@@ -103,3 +116,4 @@ viewRecipeButton.addEventListener("click", function(x) {
   x.preventDefault();
   dropDownShow.classList.remove("dropdownHidden");
 });
+
