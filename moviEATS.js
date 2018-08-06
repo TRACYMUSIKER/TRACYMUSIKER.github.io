@@ -3,7 +3,7 @@ var form = document.querySelector(".form").addEventListener('submit',function(e)
   displayContent();
 });
 
-  var dropDownShow = document.querySelector(".dropdown");
+var dropDownShow = document.querySelector(".dropdown");
 
 var displayContent = function() {
   var output = document.querySelector(".output");
