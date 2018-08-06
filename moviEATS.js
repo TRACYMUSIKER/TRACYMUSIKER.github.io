@@ -1,7 +1,9 @@
-var form = document.querySelector(".form").addEventListener('submit',function(e){
-  e.preventDefault();
-  displayContent();
-});
+var form = document
+  .querySelector(".form")
+  .addEventListener("submit", function(e) {
+    e.preventDefault();
+    displayContent();
+  });
 
 var dropDownShow = document.querySelector(".dropdown");
 
@@ -33,7 +35,7 @@ var getMoviesAPI = function(input, filteredFood) {
 
 var getRecipe = function(food) {
   var recipeApiUrl =
-  "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
+    "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
   $.ajax(recipeApiUrl + food, {
     headers: {
       "X-Mashape-Key": recipeKey,
@@ -54,29 +56,27 @@ var getMovieData = function(input, output, cardList) {
 
   var filteredFood = function(movie) {
     var foodObject = {
-      "Horror, Thriller": ["chicken", "taco"],
+      Adventure: ["chicken", "taco"],
       Comedy: ["pasta", "chicken"],
-      "Horror, Sci-Fi": ["taco", "asian"],
-      "Adventure, Drama, Fantasy": ["asian", "beef"],
-      "Action, Adventure, Sci-Fi": ["rice"],
+      Horror: ["taco", "asian"],
+      Animation: ["asian", "beef"],
       Drama: ["rice", "potato"],
-      "Drama, Fantasy, Romance": ["potato"],
-      "Action, Adventure, Fantasy": ["spicy", "beef"],
-      "Animation, Adventure, Comedy": ["rice", "potato"],
+      Action: ["spicy", "beef"],
       "Sci-Fi": ["spinach", "fish"],
-      "Drama, Romance": ["ravioli"],
-      "Comedy, Drama": ["creamy", "ravioli"],
-      "Comedy, Fantasy": ["taco", "pasta"],
-      "Drama, History, Romance": ["asian", "pasta"],
-      "Action, Comedy, Crime": ["creamy"],
-      "Drama, Sport": ["fish", "beef"]
+      Crime: ["rice"],
+      Sport: ["pizza"],
+      Documentory: ["asian"]
     };
-    
+
     var keys = Object.keys(foodObject);
-    if (keys.includes(movie.Genre)) {
+    var checkMovie = movie.Genre.split(", ");
+    if (keys.includes(checkMovie[0])) {
       output.classList.add("show");
       card.textContent = movie.Genre;
-      getRecipe();
+      getRecipe(keys);
+    } else {
+      output.classList.add("show");
+      card.textContent = "Genre not found, try again.";
     }
   };
   getMoviesAPI(input, filteredFood);
