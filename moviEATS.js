@@ -1,34 +1,9 @@
-var url =
-  "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=";
-var url =
-  "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=";
-
-var recipeUrl =
-  "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=";
-var form = document.querySelector(".form");
-
-var recipeApiUrl =
-  "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
-
-var recipeApiUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query='
-var form = document.querySelector(".form")
-var dropDownShow = document.querySelector(".dropdown");
-
-form.addEventListener("submit", function(e) {
-e.preventDefault();
-displayContent();
+var form = document.querySelector(".form").addEventListener('submit',function(e){
+  e.preventDefault();
+  displayContent();
 });
 
-
-var foodObject = 
-  {
-  Comedy: ["pasta", "chicken"],
-  "Horror, Sci-Fi": ["taco", "asian"],
-  Drama: ["rice", "potato"],
-  Adventure: ["spicy", "beef"],
-  "Sci-fi": ["spinach", "fish"],
-  "Comedy, Drama": ["creamy", "ravioli"]
-};
+var dropDownShow = document.querySelector(".dropdown");
 
 var displayContent = function() {
   var output = document.querySelector(".output");
@@ -57,6 +32,8 @@ var getMoviesAPI = function(input, filteredFood) {
 };
 
 var getRecipe = function(food) {
+  var recipeApiUrl =
+  "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
   $.ajax(recipeApiUrl + food, {
     headers: {
       "X-Mashape-Key": recipeKey,
@@ -77,13 +54,22 @@ var getMovieData = function(input, output, cardList) {
 
   var filteredFood = function(movie) {
     var foodObject = {
+      "Horror, Thriller": ["chicken", "taco"],
       Comedy: ["pasta", "chicken"],
       "Horror, Sci-Fi": ["taco", "asian"],
-      "Animation, Adventure, Fiction": ["asian", "beef"],
+      "Adventure, Drama, Fantasy": ["asian", "beef"],
+      "Action, Adventure, Sci-Fi": ["rice"],
       Drama: ["rice", "potato"],
-      Adventure: ["spicy", "beef"],
-      "Sci-fi": ["spinach", "fish"],
-      "Comedy, Drama": ["creamy", "ravioli"]
+      "Drama, Fantasy, Romance": ["potato"],
+      "Action, Adventure, Fantasy": ["spicy", "beef"],
+      "Animation, Adventure, Comedy": ["rice", "potato"],
+      "Sci-Fi": ["spinach", "fish"],
+      "Drama, Romance": ["ravioli"],
+      "Comedy, Drama": ["creamy", "ravioli"],
+      "Comedy, Fantasy": ["taco", "pasta"],
+      "Drama, History, Romance": ["asian", "pasta"],
+      "Action, Comedy, Crime": ["creamy"],
+      "Drama, Sport": ["fish", "beef"]
     };
     
     var keys = Object.keys(foodObject);
@@ -116,4 +102,3 @@ viewRecipeButton.addEventListener("click", function(x) {
   x.preventDefault();
   dropDownShow.classList.remove("dropdownHidden");
 });
-
