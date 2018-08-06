@@ -50,8 +50,7 @@ body {
   margin: 1em;
 }
 
-.card-list {
-  /* display: none; */
+/* .card-list {
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow);
@@ -60,7 +59,7 @@ body {
   border: none;
   margin-bottom: 1rem;
   padding: 1em;
-}
+} */
 
 .list-item {
   display: flex;
