@@ -73,7 +73,7 @@ var getMovieData = function(input, output, cardList) {
     if (keys.includes(checkMovie[0])) {
       output.classList.add("show");
       card.textContent = movie.Genre;
-      getRecipe();
+      getRecipe(keys);
     } else {
       output.classList.add("show");
       card.textContent = "Genre not found, try again.";
