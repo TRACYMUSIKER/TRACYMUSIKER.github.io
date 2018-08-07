@@ -45,6 +45,7 @@ var getRecipe = function(food) {
 
 
 var getMoviesAPI = function(input) {
+  var output = document.querySelector(".output");
   var movieGenre = document.querySelector(".movie-genre");
   var keys = Object.keys(foodObject);
   $.ajax({
@@ -54,6 +55,7 @@ var getMoviesAPI = function(input) {
       var checkMovie = movie.Genre.split(", ");
       if (keys.includes(checkMovie[0])) {
         movieGenre.textContent = movie.Genre;
+        output.setAttribute('class', 'show');
         getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
       } else {
         movieGenre.textContent = "Genre not found, try again.";
