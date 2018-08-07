@@ -14,6 +14,8 @@ html, body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-image: url('./drapes-background.jpg');
+  background-size: contain;
 }
 
 .container {
@@ -121,6 +123,7 @@ html, body {
   }
 
   body {
+    background-image: url('./drapes-background.jpg')
     background-color: black;
     color: antiquewhite;
     font-family: sans-serif;
