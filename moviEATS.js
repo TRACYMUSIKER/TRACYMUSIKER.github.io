@@ -1,10 +1,10 @@
+
+var viewRecipeButton = document.querySelector(".viewRecipeButton");
 var form = document
   .querySelector(".form")
   .addEventListener("submit", function(e) {
     e.preventDefault();
     var input = document.querySelector('.main-input');
-    getMoviesAPI(input.value);
-  });
 
 var dropDownShow = document.querySelector(".dropdown");
 
@@ -18,13 +18,15 @@ var getMoviesAPI = function(input) {
     type: "GET",
     url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
     success: function(movie) {
-      getRecipe(randomArrayItem(foodObject[movie.Genre]));
-    },
-    error: function(error) {
-      console.log(error);
+      var checkMovie = movie.Genre.split(", ");
+      var theMovieGenre = checkMovie[0];
+      getRecipe(randomArrayItem(foodObject.theMovieGenre));
     }
-  });
-};
+  //   error: function(error) {
+  //     console.log(error);
+  //   }
+  // }),
+});
 
 var foodObject = {
   Adventure: ["chicken", "taco"],
@@ -50,6 +52,7 @@ var getRecipe = function(food) {
     method: "GET",
     success: function(recipes) {
       var recipeInfo = randomArrayItem(recipes.Recipes);
+      console.log(recipes.Recipes);
       createRecipe(recipeInfo);
     }
   });
@@ -57,8 +60,7 @@ var getRecipe = function(food) {
 
 var getMovieData = function(input) {
   var input = document.querySelector(".main-input");
-  getMoviesApi(input);
-}
+};
 
 var createRecipe = function(recipe) {
   var recipeImage = document.createElement("img");
@@ -76,8 +78,7 @@ var createRecipe = function(recipe) {
   dropDownShow.appendChild(recipeLink);
 };
 
-var viewRecipeButton = document.querySelector(".viewRecipeButton");
 viewRecipeButton.addEventListener("click", function(x) {
   x.preventDefault();
   dropDownShow.classList.remove("dropdownHidden");
-});
+};
