@@ -2,35 +2,41 @@ var form = document
   .querySelector(".form")
   .addEventListener("submit", function(e) {
     e.preventDefault();
-    displayContent();
+    var input = document.querySelector('.main-input');
+    getMoviesAPI(input.value);
   });
 
 var dropDownShow = document.querySelector(".dropdown");
 
-var displayContent = function() {
-  var output = document.querySelector(".output");
-  var mainInput = document.querySelector(".main-input");
-  var cardList = document.querySelector(".card-list");
-  getMovieData(mainInput, output, cardList);
-};
-
 var randomArrayItem = function(recipeOptions) {
   return recipeOptions[Math.floor(Math.random() * recipeOptions.length)];
+  console.log(recipeOptions);
 };
 
-var getMoviesAPI = function(input, filteredFood) {
+var getMoviesAPI = function(input) {
   $.ajax({
     type: "GET",
-    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input.value,
-    success: function(data) {
-      var moviesArray = [];
-      moviesArray.push(data);
-      moviesArray.forEach(filteredFood);
+    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
+    success: function(movie) {
+      getRecipe(randomArrayItem(foodObject[movie.Genre]));
     },
     error: function(error) {
       console.log(error);
     }
   });
+};
+
+var foodObject = {
+  Adventure: ["chicken", "taco"],
+  Comedy: ["pasta", "chicken"],
+  Horror: ["taco", "asian"],
+  Animation: ["asian", "beef"],
+  Drama: ["rice", "potato"],
+  Action: ["spicy", "beef"],
+  "Sci-Fi": ["spinach", "fish"],
+  Crime: ["rice"],
+  Sport: ["pizza"],
+  Documentory: ["asian"]
 };
 
 var getRecipe = function(food) {
@@ -49,38 +55,10 @@ var getRecipe = function(food) {
   });
 };
 
-var getMovieData = function(input, output, cardList) {
-  var input = input;
-  var output = output;
-  var card = cardList;
-
-  var filteredFood = function(movie) {
-    var foodObject = {
-      Adventure: ["chicken", "taco"],
-      Comedy: ["pasta", "chicken"],
-      Horror: ["taco", "asian"],
-      Animation: ["asian", "beef"],
-      Drama: ["rice", "potato"],
-      Action: ["spicy", "beef"],
-      "Sci-Fi": ["spinach", "fish"],
-      Crime: ["rice"],
-      Sport: ["pizza"],
-      Documentory: ["asian"]
-    };
-
-    var keys = Object.keys(foodObject);
-    var checkMovie = movie.Genre.split(", ");
-    if (keys.includes(checkMovie[0])) {
-      output.classList.add("show");
-      card.textContent = movie.Genre;
-      getRecipe(keys);
-    } else {
-      output.classList.add("show");
-      card.textContent = "Genre not found, try again.";
-    }
-  };
-  getMoviesAPI(input, filteredFood);
-};
+var getMovieData = function(input) {
+  var input = document.querySelector(".main-input");
+  getMoviesApi(input);
+}
 
 var createRecipe = function(recipe) {
   var recipeImage = document.createElement("img");
@@ -94,6 +72,7 @@ var createRecipe = function(recipe) {
   recipeLink.setAttribute("href", recipe.link);
   recipeLink.appendChild(recipeTitleDisplay);
   dropDownShow.appendChild(recipeImage);
+  dropDownShow.setAttribute('class', 'dropdown');
   dropDownShow.appendChild(recipeLink);
 };
 
