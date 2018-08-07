@@ -2,9 +2,22 @@ var form = document
   .querySelector(".form")
   .addEventListener("submit", function(e) {
     e.preventDefault();
-    var input = document.querySelector('.main-input');
+    var input = document.querySelector(".main-input");
     getMoviesAPI(input.value);
   });
+
+  var foodObject = {
+    Adventure: ["chicken", "taco"],
+    "Comedy": ["pasta", "chicken"],
+    Horror: ["taco", "asian"],
+    Animation: ["asian", "beef"],
+    Drama: ["rice", "potato"],
+    Action: ["spicy", "beef"],
+    "Sci-Fi": ["spinach", "fish"],
+    Crime: ["rice"],
+    Sport: ["pizza"],
+    Documentory: ["asian"]
+  };
 
 var dropDownShow = document.querySelector(".dropdown");
 
@@ -13,33 +26,8 @@ var randomArrayItem = function(recipeOptions) {
   console.log(recipeOptions);
 };
 
-var getMoviesAPI = function(input) {
-  $.ajax({
-    type: "GET",
-    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
-    success: function(movie) {
-      getRecipe(randomArrayItem(foodObject[movie.Genre]));
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  });
-};
-
-var foodObject = {
-  Adventure: ["chicken", "taco"],
-  Comedy: ["pasta", "chicken"],
-  Horror: ["taco", "asian"],
-  Animation: ["asian", "beef"],
-  Drama: ["rice", "potato"],
-  Action: ["spicy", "beef"],
-  "Sci-Fi": ["spinach", "fish"],
-  Crime: ["rice"],
-  Sport: ["pizza"],
-  Documentory: ["asian"]
-};
-
 var getRecipe = function(food) {
+  var recipeKey = "8bWerKz0i7mshVJxyR6nNJRIX7h7p1nFb5mjsnWGGkg3FQ4YkD";
   var recipeApiUrl =
     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
   $.ajax(recipeApiUrl + food, {
@@ -55,10 +43,27 @@ var getRecipe = function(food) {
   });
 };
 
-var getMovieData = function(input) {
-  var input = document.querySelector(".main-input");
-  getMoviesApi(input);
-}
+
+var getMoviesAPI = function(input) {
+  var movieGenre = document.querySelector(".movie-genre");
+  var keys = Object.keys(foodObject);
+  $.ajax({
+    type: "GET",
+    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
+    success: function(movie) {
+      var checkMovie = movie.Genre.split(", ");
+      if (keys.includes(checkMovie[0])) {
+        movieGenre.textContent = movie.Genre;
+        getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
+      } else {
+        movieGenre.textContent = "Genre not found, try again.";
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+};
 
 var createRecipe = function(recipe) {
   var recipeImage = document.createElement("img");
