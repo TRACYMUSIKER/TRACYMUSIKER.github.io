@@ -2,38 +2,31 @@ var form = document
   .querySelector(".form")
   .addEventListener("submit", function(e) {
     e.preventDefault();
-    displayContent();
+    var input = document.querySelector(".main-input");
+    getMoviesAPI(input.value);
   });
 
-var dropDownShow = document.querySelector(".dropdown");
+  var foodObject = {
+    Adventure: ["chicken", "taco"],
+    "Comedy": ["pasta", "chicken"],
+    Horror: ["taco", "asian"],
+    Animation: ["asian", "beef"],
+    Drama: ["rice", "potato"],
+    Action: ["spicy", "beef"],
+    "Sci-Fi": ["spinach", "fish"],
+    Crime: ["rice"],
+    Sport: ["pizza"],
+    Documentory: ["asian"]
+  };
 
-var displayContent = function() {
-  var output = document.querySelector(".output");
-  var mainInput = document.querySelector(".main-input");
-  var cardList = document.querySelector(".card-list");
-  getMovieData(mainInput, output, cardList);
-};
+var dropDownShow = document.querySelector(".dropdown");
 
 var randomArrayItem = function(recipeOptions) {
   return recipeOptions[Math.floor(Math.random() * recipeOptions.length)];
 };
 
-var getMoviesAPI = function(input, filteredFood) {
-  $.ajax({
-    type: "GET",
-    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input.value,
-    success: function(data) {
-      var moviesArray = [];
-      moviesArray.push(data);
-      moviesArray.forEach(filteredFood);
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  });
-};
-
 var getRecipe = function(food) {
+  var recipeKey = "8bWerKz0i7mshVJxyR6nNJRIX7h7p1nFb5mjsnWGGkg3FQ4YkD";
   var recipeApiUrl =
     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
   $.ajax(recipeApiUrl + food, {
@@ -49,37 +42,25 @@ var getRecipe = function(food) {
   });
 };
 
-var getMovieData = function(input, output, cardList) {
-  var input = input;
-  var output = output;
-  var card = cardList;
-
-  var filteredFood = function(movie) {
-    var foodObject = {
-      Adventure: ["chicken", "taco"],
-      Comedy: ["pasta", "chicken"],
-      Horror: ["taco", "asian"],
-      Animation: ["asian", "beef"],
-      Drama: ["rice", "potato"],
-      Action: ["spicy", "beef"],
-      "Sci-Fi": ["spinach", "fish"],
-      Crime: ["rice"],
-      Sport: ["pizza"],
-      Documentory: ["asian"]
-    };
-
-    var keys = Object.keys(foodObject);
-    var checkMovie = movie.Genre.split(", ");
-    if (keys.includes(checkMovie[0])) {
-      output.classList.add("show");
-      card.textContent = movie.Genre;
-      getRecipe(keys);
-    } else {
-      output.classList.add("show");
-      card.textContent = "Genre not found, try again.";
+var getMoviesAPI = function(input) {
+  var movieGenre = document.querySelector(".movie-genre");
+  var keys = Object.keys(foodObject);
+  $.ajax({
+    type: "GET",
+    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
+    success: function(movie) {
+      var checkMovie = movie.Genre.split(", ");
+      if (keys.includes(checkMovie[0])) {
+        movieGenre.textContent = movie.Genre;
+        getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
+      } else {
+        movieGenre.textContent = "Genre not found, try again.";
+      }
+    },
+    error: function(error) {
+      console.log(error);
     }
-  };
-  getMoviesAPI(input, filteredFood);
+  });
 };
 
 var createRecipe = function(recipe) {
