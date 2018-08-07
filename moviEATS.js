@@ -23,6 +23,7 @@ var dropDownShow = document.querySelector(".dropdown");
 
 var randomArrayItem = function(recipeOptions) {
   return recipeOptions[Math.floor(Math.random() * recipeOptions.length)];
+  console.log(recipeOptions);
 };
 
 var getRecipe = function(food) {
@@ -41,6 +42,7 @@ var getRecipe = function(food) {
     }
   });
 };
+
 
 var getMoviesAPI = function(input) {
   var movieGenre = document.querySelector(".movie-genre");
@@ -75,6 +77,7 @@ var createRecipe = function(recipe) {
   recipeLink.setAttribute("href", recipe.link);
   recipeLink.appendChild(recipeTitleDisplay);
   dropDownShow.appendChild(recipeImage);
+  dropDownShow.setAttribute('class', 'dropdown');
   dropDownShow.appendChild(recipeLink);
 };
 
