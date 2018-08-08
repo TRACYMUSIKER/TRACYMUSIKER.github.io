@@ -23,11 +23,9 @@ var dropDownShow = document.querySelector(".dropdown");
 
 var randomArrayItem = function(recipeOptions) {
   return recipeOptions[Math.floor(Math.random() * recipeOptions.length)];
-  console.log(recipeOptions);
 };
 
 var getRecipe = function(food) {
-  var recipeKey = "8bWerKz0i7mshVJxyR6nNJRIX7h7p1nFb5mjsnWGGkg3FQ4YkD";
   var recipeApiUrl =
     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
   $.ajax(recipeApiUrl + food, {
@@ -50,19 +48,22 @@ var getMoviesAPI = function(input) {
   var keys = Object.keys(foodObject);
   $.ajax({
     type: "GET",
-    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
+    url: "http://www.omdbapi.com/?apikey=" + movieKey + "&t=" + input,
     success: function(movie) {
       var checkMovie = movie.Genre.split(", ");
       if (keys.includes(checkMovie[0])) {
         movieGenre.textContent = movie.Genre;
         output.setAttribute('class', 'show');
-        getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
+        for (i = 0; i < 4; i++) {
+          getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
+        }
       } else {
-        movieGenre.textContent = "Genre not found, try again.";
+        movieGenre.textContent = movie.Genre;
+        getRecipe('salami');
       }
     },
-    error: function(error) {
-      console.log(error);
+    error: function() {
+      console.log('error');
     }
   });
 };
@@ -70,7 +71,7 @@ var getMoviesAPI = function(input) {
 var createRecipe = function(recipe) {
   var recipeImage = document.createElement("img");
   var recipeTitleDisplay = document.createElement("p");
-  var recipeLink = document.createElement("a" );
+  var recipeLink = document.createElement("a");
   recipeImage.classList.add("recipe-img");
   recipeTitleDisplay.classList.add("recipe-title");
   recipeLink.classList.add("recipe-link");
