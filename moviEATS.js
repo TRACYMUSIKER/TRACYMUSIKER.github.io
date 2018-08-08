@@ -70,10 +70,10 @@ var getMoviesAPI = function(input) {
 var createRecipe = function(recipe) {
   var recipeImage = document.createElement("img");
   var recipeTitleDisplay = document.createElement("p");
-  var recipeLink = document.createElement("a");
-  recipeImage.classList.add(".recipe-img");
-  recipeTitleDisplay.classList.add(".recipe-title");
-  recipeLink.classList.add(".recipe-link");
+  var recipeLink = document.createElement("a" );
+  recipeImage.classList.add("recipe-img");
+  recipeTitleDisplay.classList.add("recipe-title");
+  recipeLink.classList.add("recipe-link");
   recipeImage.setAttribute("src", recipe.image);
   recipeTitleDisplay.textContent = recipe.name;
   recipeLink.setAttribute("href", recipe.link);
