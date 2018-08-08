@@ -51,6 +51,9 @@ var getMoviesAPI = function(input) {
   var output = document.querySelector(".output");
   var movieGenre = document.querySelector(".movie-genre");
   var keys = Object.keys(foodObject);
+  while (dropDownShow.firstChild) {
+    dropDownShow.removeChild(dropDownShow.firstChild);
+}
   $.ajax({
     type: "GET",
     url: "http://www.omdbapi.com/?apikey=" + keysObjt.movieKey + "&t=" + input,
@@ -58,7 +61,7 @@ var getMoviesAPI = function(input) {
       var checkMovie = movie.Genre.split(", ");
       if (keys.includes(checkMovie[0])) {
         movieGenre.textContent = movie.Genre;
-        output.setAttribute('class', 'show');
+        output.setAttribute('class', 'show output');
         for (i = 0; i < 4; i++) {
           getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
         }
@@ -89,8 +92,11 @@ var createRecipe = function(recipe) {
   dropDownShow.appendChild(recipeLink);
 };
 
-var viewRecipeButton = document.querySelector(".viewRecipeButton");
-viewRecipeButton.addEventListener("click", function(x) {
-  x.preventDefault();
-  dropDownShow.classList.remove("dropdownHidden");
-});
+
+
+
+// var viewRecipeButton = document.querySelector(".viewRecipeButton");
+// viewRecipeButton.addEventListener("click", function(x) {
+//   x.preventDefault();
+//   dropDownShow.classList.remove("dropdownHidden");
+// });
