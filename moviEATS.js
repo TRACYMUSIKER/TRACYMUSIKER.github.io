@@ -48,7 +48,7 @@ var getMoviesAPI = function(input) {
   var keys = Object.keys(foodObject);
   $.ajax({
     type: "GET",
-    url: "http://www.omdbapi.com/?apikey=24ec2260&t=" + input,
+    url: "http://www.omdbapi.com/?apikey=" + movieKey + "&t=" + input,
     success: function(movie) {
       var checkMovie = movie.Genre.split(", ");
       if (keys.includes(checkMovie[0])) {
