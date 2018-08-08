@@ -77,19 +77,28 @@ var getMoviesAPI = function(input) {
 };
 
 var createRecipe = function(recipe) {
+  var eachRecipeDiv = document.createElement("div");
+  var linkDiv = document.createElement("div");
   var recipeImage = document.createElement("img");
   var recipeTitleDisplay = document.createElement("p");
   var recipeLink = document.createElement("a");
+  eachRecipeDiv.classList.add("recipe-parent");
   recipeImage.classList.add("recipe-img");
   recipeTitleDisplay.classList.add("recipe-title");
   recipeLink.classList.add("recipe-link");
+  linkDiv.classList.add("link-div");
   recipeImage.setAttribute("src", recipe.image);
   recipeTitleDisplay.textContent = recipe.name;
   recipeLink.setAttribute("href", recipe.link);
-  recipeLink.appendChild(recipeTitleDisplay);
-  dropDownShow.appendChild(recipeImage);
+  recipeLink.textContent = "Click here for Recipe"
+  // recipeLink.appendChild(recipeTitleDisplay);
+  console.log(recipe.link);
+  linkDiv.appendChild(recipeLink);
+  eachRecipeDiv.appendChild(recipeTitleDisplay);
+  eachRecipeDiv.appendChild(recipeImage);
+  eachRecipeDiv.appendChild(linkDiv);
   dropDownShow.setAttribute('class', 'dropdown');
-  dropDownShow.appendChild(recipeLink);
+  dropDownShow.appendChild(eachRecipeDiv);
 };
 
 
