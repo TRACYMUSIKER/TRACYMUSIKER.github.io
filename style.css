@@ -209,4 +209,13 @@ padding: 2rem;
     font-family: sans-serif;
     font-size: small;
   }
+
+  .dropdown {
+    flex-direction: row;
+  }
+
+  .recipe-parent {
+    padding: 1rem;
+  }
+
 }
