@@ -4,7 +4,9 @@ The purpose of this app is to pair food suggestions with specific movie genres. 
 
 Users: movie loving foodies who are enjoy unconventional entertainment experiences
 
-Problem:
+Problem: "I want to provide a unique experience for my company coming over, but it's raining out!"
+
+App purpose:
 Providing them a memorable experience that satisfies their foodie inclinations, movie enthusiasm and eccentricities.
 
 Elevator pitch: Here’s an idea, try moviEats - for something unique. just enter a movie you want to watch, our app will select a food that’ll enhance your experience
