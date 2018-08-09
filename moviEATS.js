@@ -56,7 +56,7 @@ var getMoviesAPI = function(input) {
 }
   $.ajax({
     type: "GET",
-    url: "http://www.omdbapi.com/?apikey=" + keysObjt.movieKey + "&t=" + input,
+    url: "https://www.omdbapi.com/?apikey=" + keysObjt.movieKey + "&t=" + input,
     success: function(movie) {
       var checkMovie = movie.Genre.split(", ");
       if (keys.includes(checkMovie[0])) {
@@ -70,8 +70,8 @@ var getMoviesAPI = function(input) {
         getRecipe('salami');
       }
     },
-    error: function() {
-      console.log('error');
+    error: function(error) {
+      console.log(error);
     }
   });
 };
