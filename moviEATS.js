@@ -54,27 +54,25 @@ var getMoviesAPI = function(input) {
   while (dropDownShow.firstChild) {
     dropDownShow.removeChild(dropDownShow.firstChild);
 }
-  $.ajax({
-    type: "GET",
-    url: "http://www.omdbapi.com/?apikey=" + keysObjt.movieKey + "&t=" + input,
-    success: function(movie) {
-      var checkMovie = movie.Genre.split(", ");
-      if (keys.includes(checkMovie[0])) {
-        movieGenre.textContent = movie.Genre;
-        output.setAttribute('class', 'show output');
-        for (i = 0; i < 4; i++) {
-          getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
-        }
-      } else {
-        movieGenre.textContent = movie.Genre;
-        getRecipe('salami');
+
+  fetch("http://www.omdbapi.com/?apikey=" + keysObjt.movieKey + "&t=" + input)
+  .then(function(res){
+    return res.json();
+  })
+  .then(function(movie){
+    var checkMovie = movie.Genre.split(", ");
+    if (keys.includes(checkMovie[0])) {
+      movieGenre.textContent = movie.Genre;
+      output.setAttribute('class', 'show output');
+      for (i = 0; i < 4; i++) {
+        getRecipe(randomArrayItem(foodObject[checkMovie[0]]));
       }
-    },
-    error: function() {
-      console.log('error');
+    } else {
+      movieGenre.textContent = movie.Genre;
+      getRecipe('salami');
     }
   });
-};
+}
 
 var createRecipe = function(recipe) {
   var eachRecipeDiv = document.createElement("div");
