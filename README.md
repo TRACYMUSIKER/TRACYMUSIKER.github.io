@@ -3,14 +3,14 @@
 The purpose of this app is to pair food suggestions with specific movie genres. The user will enter a movie and based on that genre, the app will suggest four different types of foods for the user to choose from. This is targeted towards the movie and food enthusiasts who are looking for a unique experience. 
 
 ## permanent link
-![github-link](https://TRACYMUSIKER.github.io)
+![](https://TRACYMUSIKER.github.io)
 
 [Trello]
 (https://trello.com/b/1LlytJij/movieats)
 
 ![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-phone.png | width=100)
 
-![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-ipad.png width="48")
+<img src="https://TRACYMUSIKER.github.io/moviEATS-ipad.png" width="200" height="400"/>
 
 ![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-laptop.png width="48")
 
