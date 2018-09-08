@@ -8,11 +8,11 @@ The purpose of this app is to pair food suggestions with specific movie genres. 
 [Trello]
 (https://trello.com/b/1LlytJij/movieats)
 
-![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-phone.png)
+![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-phone.png=250x250)
 
-![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-ipad.png)
+![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-ipad.png=250x250)
 
-![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-laptop.png)
+![moviEATS-in-action](https://TRACYMUSIKER.github.io/moviEATS-laptop.png=250x250)
 
 
 ## Authors
