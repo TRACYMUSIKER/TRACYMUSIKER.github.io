@@ -1,7 +1,7 @@
-var keysObjt = {
-  recipeKey: (typeof process !== 'undefined' ? process.env.RECIPEKEY : recipeKey),
-  movieKey:  (typeof process !== 'undefined' ? process.env.MOVIEKEY : movieKey)
-}
+// var keysObjt = {
+//   recipeKey: (typeof process !== 'undefined' ? process.env.RECIPEKEY : recipeKey),
+//   movieKey:  (typeof process !== 'undefined' ? process.env.MOVIEKEY : movieKey)
+// }
 
 var form = document
   .querySelector(".form")
@@ -35,7 +35,7 @@ var getRecipe = function(food) {
     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query=";
   $.ajax(recipeApiUrl + food, {
     headers: {
-      "X-Mashape-Key": keysObjt.recipeKey,
+      "X-Mashape-Key": recipeKey,
       Accept: "application/json"
     },
     method: "GET",
@@ -56,7 +56,7 @@ var getMoviesAPI = function(input) {
 }
   $.ajax({
     type: "GET",
-    url: "https://www.omdbapi.com/?apikey=" + keysObjt.movieKey + "&t=" + input,
+    url: "https://www.omdbapi.com/?apikey=" + movieKey + "&t=" + input,
     success: function(movie) {
       var checkMovie = movie.Genre.split(", ");
       if (keys.includes(checkMovie[0])) {
